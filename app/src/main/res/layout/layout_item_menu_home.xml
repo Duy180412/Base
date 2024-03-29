@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/icon_app"
+        android:layout_width="@dimen/item_icon_menu_home_size"
+        android:layout_height="@dimen/item_icon_menu_home_size"
+        android:importantForAccessibility="no"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/unnamed"/>
+
+    <TextView
+        android:id="@+id/name_icon"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/icon_app"
+        app:layout_constraintStart_toStartOf="@+id/icon_app"
+        app:layout_constraintTop_toBottomOf="@+id/icon_app"
+        tools:text="name icon rat dai" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
