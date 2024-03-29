@@ -17,8 +17,7 @@ class HomeActivity : BaseActivity(R.layout.activity_home_menu) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val doituong = DoiTuong("chaha",32)
-        Router.open(this, Routes.HomeApp(binding.container.id, data = doituong))
+        Router.open(this, Routes.HomeApp(binding.container.id))
     }
 }
 

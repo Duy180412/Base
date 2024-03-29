@@ -13,7 +13,7 @@ object Routes {
     @Parcelize
     class HomeApp(
         override val containerFragmentId: Int = 0,
-        override val data: Parcelable,
+        override val data: Parcelable? = null,
         override val typeTransaction: TypeTransaction = TypeTransaction.ADD,
         ) : FragmentRouting {
         override val clazzFragment: KClass<out Fragment>

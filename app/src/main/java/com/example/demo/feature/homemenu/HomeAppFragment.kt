@@ -17,12 +17,11 @@ import com.example.demo.wiget.apdater.HomeMenuAdapter
 class HomeAppFragment : BaseFragment(R.layout.fragment_home_app) {
     private val binding by viewBinding(FragmentHomeAppBinding::bind)
     private lateinit var adapterHomeMenu: HomeMenuAdapter
-    private val args = lazyArgument<Routes.HomeApp>()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        println("chaythu" + arguments.toString())
-//        adapterHomeMenu = HomeMenuAdapter(binding.menuHome)
-//        initListApp()
+        adapterHomeMenu = HomeMenuAdapter(binding.menuHome)
+        initListApp()
     }
 
     private fun initListApp() {
