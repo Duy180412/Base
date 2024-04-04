@@ -9,8 +9,6 @@ import com.example.demo.R
 import com.example.demo.app.BaseFragment
 import com.example.demo.app.viewBinding
 import com.example.demo.databinding.FragmentHomeAppBinding
-import com.example.demo.help.Routes
-import com.example.demo.help.lazyArgument
 import com.example.demo.model.ItemHomeMenu
 import com.example.demo.wiget.apdater.HomeMenuAdapter
 

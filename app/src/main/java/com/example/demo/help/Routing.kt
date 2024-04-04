@@ -16,9 +16,11 @@ interface ActivityRouting : Routing {
 interface FragmentRouting : Routing {
     val clazzFragment: KClass<out Fragment>
     val clazzActivity: KClass<out Activity>
-    val containerFragmentId: Int
+    var containerFragmentId: Int
     val typeTransaction: TypeTransaction
 }
+
+const val ContainerFragmentIdDefault = -1
 
 enum class TypeTransaction {
     ADD,

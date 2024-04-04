@@ -23,29 +23,45 @@ object Router {
                     is ActivityRouting -> ower.startActivity(createIntent(ower, routing))
                     is FragmentRouting -> {
                         if (ower::class == routing.clazzActivity) {
-                            val transition =
-                                ower.cast<FragmentActivity>()?.supportFragmentManager?.beginTransaction()
-                                    ?: error("Can't not find  supportFragmentManager in $routing")
-                            when (routing.typeTransaction) {
-                                TypeTransaction.ADD -> {
-                                    transition.add(
-                                        routing.containerFragmentId,
-                                        routing.clazzFragment.java,
-                                        routing.toBundle(),
-                                        createTag(routing.clazzFragment)
-                                    ).commit()
-                                }
+                           transitionFragment(ower,routing)
+                        } else ower.startActivity(createIntent(ower, routing))
 
-                                else -> println("chaythu Not Sp")
-                            }
-                        }
                     }
                 }
             }
 
             is Fragment -> {
-
                 ower.startActivity(createIntent(ower.requireContext(), routing))
+            }
+        }
+    }
+
+    private fun transitionFragment(ower: Activity, routing: FragmentRouting) {
+        val supportManager = ower.cast<FragmentActivity>()?.supportFragmentManager
+            ?: error("Can't not find  supportFragmentManager in $routing")
+        val transition = supportManager.beginTransaction()
+        when (routing.typeTransaction) {
+            TypeTransaction.ADD ->
+                transition.add(
+                    routing.containerFragmentId,
+                    routing.clazzFragment.java,
+                    routing.toBundle(),
+                    createTag(routing.clazzFragment)
+                ).commit()
+
+            TypeTransaction.REPLACE -> {
+                transition.replace(
+                    routing.containerFragmentId,
+                    routing.clazzFragment.java,
+                    routing.toBundle(),
+                    createTag(routing.clazzFragment)
+                ).commit()
+            }
+
+            TypeTransaction.REMOVE -> {
+                val fragment =
+                    supportManager.findFragmentByTag(routing.clazzFragment::class.java.simpleName)
+                if (fragment != null) transition.remove(fragment).commit()
             }
         }
     }
@@ -58,7 +74,7 @@ object Router {
                 )
             }
 
-            is FragmentRouting -> Intent(context, HomeActivity::class.java).apply {
+            is FragmentRouting -> Intent(context, routing.clazzActivity.java).apply {
                 putExtras(routing.toBundle())
             }
 
